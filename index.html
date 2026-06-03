@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+const WA = "https://chat.whatsapp.com/GDTHXLv1659GBhi1nKgAud";
+const GAS_URL = "BURAYA_GOOGLE_APPS_SCRIPT_URL_GELECEK";
+
+function getParam(p){
+  return new URLSearchParams(window.location.search).get(p)||"";
+}
+
+fetch(GAS_URL, {
+  method:"POST",
+  body: JSON.stringify({
+    tarih_saat: new Date().toISOString(),
+    referrer: document.referrer,
+    utm_source: getParam("utm_source"),
+    utm_medium: getParam("utm_medium"),
+    utm_campaign: getParam("utm_campaign"),
+    utm_content: getParam("utm_content"),
+    utm_term: getParam("utm_term"),
+    cihaz: navigator.userAgent,
+    ekran: screen.width+"x"+screen.height,
+    dil: navigator.language
+  })
+}).finally(()=>{ window.location.href = WA; });
+</script>
+</head>
+<body></body>
+</html>
